@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from './LanguageProvider';
 
 export function About() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,10 +54,10 @@ export function About() {
 
               {/* Floating badges */}
               <div className="absolute -top-4 -right-4 px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-200 dark:border-slate-700 animate-float">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">5+ Years Exp</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{t.about.yearsExp}</span>
               </div>
               <div className="absolute -bottom-4 -left-4 px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-200 dark:border-slate-700 animate-float animation-delay-400">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">50+ Projects</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{t.about.projectsCount}</span>
               </div>
             </div>
           </div>
@@ -67,34 +69,30 @@ export function About() {
             } transition-all duration-700 delay-200`}
           >
             <h2 className="text-sm font-semibold text-indigo-500 dark:text-indigo-400 uppercase tracking-wider mb-3">
-              About Me
+              {t.about.sectionTitle}
             </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-              Crafting Digital Experiences with{' '}
+              {t.about.heading}{' '}
               <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                Passion & Precision
+                {t.about.headingHighlight}
               </span>
             </h3>
             
             <div className="space-y-4 text-slate-600 dark:text-slate-400 text-base md:text-lg">
               <p>
-                I&apos;m a Full Stack Developer based in San Francisco with over 5 years of experience 
-                building web applications that make a difference. My journey started with curiosity 
-                about how websites work, and has evolved into a passion for creating seamless user experiences.
+                {t.about.paragraph1}
               </p>
               <p>
-                I specialize in React, Node.js, and cloud technologies, with a keen eye for 
-                design and performance optimization. When I&apos;m not coding, you&apos;ll find me 
-                contributing to open source, mentoring aspiring developers, or exploring the great outdoors.
+                {t.about.paragraph2}
               </p>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mt-8">
               {[
-                { value: '50+', label: 'Projects' },
-                { value: '30+', label: 'Clients' },
-                { value: '5+', label: 'Years' },
+                { value: '50+', label: t.about.projects },
+                { value: '30+', label: t.about.clients },
+                { value: '5+', label: t.about.years },
               ].map((stat, index) => (
                 <div
                   key={stat.label}

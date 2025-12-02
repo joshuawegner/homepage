@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from './LanguageProvider';
 
-const skills = [
+const skillsData = [
   {
-    category: 'Frontend',
+    categoryKey: 'frontend' as const,
     icon: '🎨',
     items: [
       { name: 'React', level: 95 },
@@ -14,7 +15,7 @@ const skills = [
     ],
   },
   {
-    category: 'Backend',
+    categoryKey: 'backend' as const,
     icon: '⚙️',
     items: [
       { name: 'Node.js', level: 90 },
@@ -24,7 +25,7 @@ const skills = [
     ],
   },
   {
-    category: 'DevOps',
+    categoryKey: 'devops' as const,
     icon: '☁️',
     items: [
       { name: 'Docker', level: 85 },
@@ -34,7 +35,7 @@ const skills = [
     ],
   },
   {
-    category: 'Tools',
+    categoryKey: 'tools' as const,
     icon: '🛠️',
     items: [
       { name: 'Git', level: 95 },
@@ -48,6 +49,7 @@ const skills = [
 export function Skills() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -86,22 +88,22 @@ export function Skills() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             } transition-all duration-500`}
           >
-            What I Do
+            {t.skills.sectionTitle}
           </h2>
           <h3
             className={`text-3xl md:text-4xl font-bold text-slate-900 dark:text-white ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             } transition-all duration-500 delay-100`}
           >
-            Skills & Technologies
+            {t.skills.heading}
           </h3>
         </div>
 
         {/* Skills grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skills.map((skillGroup, groupIndex) => (
+          {skillsData.map((skillGroup, groupIndex) => (
             <div
-              key={skillGroup.category}
+              key={skillGroup.categoryKey}
               className={`group p-6 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 shadow-lg hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
@@ -111,7 +113,7 @@ export function Skills() {
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-3xl">{skillGroup.icon}</span>
                 <h4 className="text-lg font-semibold text-slate-900 dark:text-white">
-                  {skillGroup.category}
+                  {t.skills[skillGroup.categoryKey]}
                 </h4>
               </div>
 

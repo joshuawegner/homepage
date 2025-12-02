@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from './LanguageProvider';
 
 const socialLinks = [
   {
@@ -44,6 +45,7 @@ const socialLinks = [
 export function Contact() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -83,22 +85,21 @@ export function Contact() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             } transition-all duration-500`}
           >
-            Get In Touch
+            {t.contact.sectionTitle}
           </h2>
           <h3
             className={`text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             } transition-all duration-500 delay-100`}
           >
-            Let&apos;s Work Together
+            {t.contact.heading}
           </h3>
           <p
             className={`text-slate-600 dark:text-slate-400 max-w-2xl mx-auto ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             } transition-all duration-500 delay-200`}
           >
-            I&apos;m always interested in hearing about new projects and opportunities. 
-            Whether you have a question or just want to say hi, feel free to reach out!
+            {t.contact.description}
           </p>
         </div>
 
@@ -112,57 +113,57 @@ export function Contact() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Name
+                  {t.contact.nameLabel}
                 </label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                  placeholder="John Doe"
+                  placeholder={t.contact.namePlaceholder}
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Email
+                  {t.contact.emailLabel}
                 </label>
                 <input
                   type="email"
                   className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                  placeholder="john@example.com"
+                  placeholder={t.contact.emailPlaceholder}
                 />
               </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                Subject
+                {t.contact.subjectLabel}
               </label>
               <input
                 type="text"
                 className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                placeholder="Project Inquiry"
+                placeholder={t.contact.subjectPlaceholder}
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                Message
+                {t.contact.messageLabel}
               </label>
               <textarea
                 rows={5}
                 className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
-                placeholder="Tell me about your project..."
+                placeholder={t.contact.messagePlaceholder}
               />
             </div>
             <button
               type="submit"
               className="w-full py-4 px-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 hover:scale-[1.02] transition-all duration-300"
             >
-              Send Message
+              {t.contact.sendButton}
             </button>
           </form>
 
           {/* Social links */}
           <div className="mt-10 pt-10 border-t border-slate-200 dark:border-slate-700">
             <p className="text-center text-slate-500 dark:text-slate-400 mb-6">
-              Or connect with me on social media
+              {t.contact.socialText}
             </p>
             <div className="flex justify-center gap-4">
               {socialLinks.map((social) => (

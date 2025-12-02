@@ -1,7 +1,10 @@
 'use client';
 
+import { useLanguage } from './LanguageProvider';
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="relative py-8 px-4 border-t border-slate-200 dark:border-slate-800">
@@ -18,14 +21,14 @@ export function Footer() {
 
         {/* Copyright */}
         <p className="text-sm text-slate-500 dark:text-slate-400">
-          © {currentYear} Max Mustermann. No rights reserved.
+          © {currentYear} Max Mustermann. {t.footer.rights}
         </p>
 
         {/* Built with */}
         <p className="text-sm text-slate-500 dark:text-slate-400">
-          Built with{' '}
+          {t.footer.builtWith}{' '}
           <span className="text-red-500">♥</span>
-          {' '}using Next.js & Tailwind
+          {' '}Next.js & Tailwind
         </p>
       </div>
     </footer>

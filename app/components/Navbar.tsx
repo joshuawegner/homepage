@@ -2,18 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import { ThemeToggle } from './ThemeToggle';
-
-const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
-];
+import { LanguageToggle } from './LanguageToggle';
+import { useLanguage } from './LanguageProvider';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.skills, href: '#skills' },
+    { name: t.nav.projects, href: '#projects' },
+    { name: t.nav.contact, href: '#contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,18 +48,20 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 className="text-slate-600 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-200 text-sm font-medium"
               >
                 {link.name}
               </a>
             ))}
+            <LanguageToggle />
             <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
+            <LanguageToggle />
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -83,7 +88,7 @@ export function Navbar() {
           <div className="py-4 space-y-2">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block px-4 py-2 text-slate-600 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
