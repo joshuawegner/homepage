@@ -97,7 +97,7 @@ export const translations: Record<Language, Translations> = {
     hero: {
       available: 'Available for freelance work',
       greeting: "Hi, I'm",
-      name: 'Max Mustermann',
+      name: 'Maria Mustermann',
       title: 'Full Stack Developer',
       description:
         'I craft beautiful, performant web applications with modern technologies. Passionate about clean code, great UX, and turning ideas into reality.',
